@@ -9,6 +9,7 @@ import { Pokemon } from '../pokemon';
 })
 export class MyComponent {
   id: string = '';
+  selectedPokemonId: number = -1
 
   // Liste fictive de Pokemons
   pokemons = [

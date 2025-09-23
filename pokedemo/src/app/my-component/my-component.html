@@ -1,7 +1,7 @@
 <input [(ngModel)]="id">
 <input type="text" readonly value={{id}}>
 
-<select  name="pokemon-select" id="pokemon-select" >
+<select  name="pokemon-select" id="pokemon-select" [(ngModel)]="selectedPokemonId">
     @for (pokemon of pokemons; track $index) {
         <option value={{pokemon.id}}>{{pokemon.name}}</option>
     }
