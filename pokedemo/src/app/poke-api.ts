@@ -14,4 +14,8 @@ export class PokeAPI {
   getPokemons(limit: number = 100) {
     return this.http.get(`https://pokeapi.co/api/v2/pokemon?limit=${limit}`);
   }
+
+  getPokemon(id: string) {
+    return this.http.get(`https://pokeapi.co/api/v2/pokemon/${id}/`)
+  }
 }
