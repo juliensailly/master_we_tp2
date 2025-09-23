@@ -6,6 +6,7 @@ import { App } from './app';
 import { MyComponent } from './my-component/my-component';
 import { FormsModule } from '@angular/forms';
 import { FilterPokemonPipePipe } from './filter-pokemon--pipe-pipe';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { FilterPokemonPipePipe } from './filter-pokemon--pipe-pipe';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FormsModule
+    FormsModule,
+    MatSlideToggleModule
   ],
   providers: [
     provideBrowserGlobalErrorListeners()
