@@ -161,6 +161,10 @@ Expliquer pourquoi il devient difficile de faire une attaque XSS sur une applica
 
 [lien](https://vitalflux.com/angular-prevent-xss-attacks-code-examples/)
 
+```
+Lors de l'affichage d'une valeur d'un biding, Angular utilisera la sanitisation afin de remplacer les charactères '<' par '&lt' par exemple. Cela empêche d'exécution du dit script. 
+```
+
 
 ## Recherche dans une liste
 
