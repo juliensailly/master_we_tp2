@@ -8,12 +8,14 @@ import { FormsModule } from '@angular/forms';
 import { FilterPokemonPipePipe } from './filter-pokemon--pipe-pipe';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { PokeAPI } from './poke-api';
+import { DisplayPokemon } from './display-pokemon/display-pokemon';
 
 @NgModule({
   declarations: [
     App,
     MyComponent,
-    FilterPokemonPipePipe
+    FilterPokemonPipePipe,
+    DisplayPokemon
   ],
   imports: [
     BrowserModule,
