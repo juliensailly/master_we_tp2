@@ -8,7 +8,7 @@ import { Pokemon } from '../pokemon';
   styleUrl: './my-component.css'
 })
 export class MyComponent {
-  id: string = '';
+  filterQuery: string = '';
   selectedPokemonId: number = -1
 
   // Liste fictive de Pokemons

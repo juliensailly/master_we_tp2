@@ -1,8 +1,11 @@
-<input [(ngModel)]="id">
-<input type="text" readonly value={{id}}>
+<input [(ngModel)]="filterQuery" placeholder="Rechercher un Pokemon...">
 
-<select  name="pokemon-select" id="pokemon-select" [(ngModel)]="selectedPokemonId">
-    @for (pokemon of pokemons; track $index) {
+<select name="pokemon-select" id="pokemon-select" [(ngModel)]="selectedPokemonId">
+    <option value="-1">-- Choose a Pokemon --</option>
+    @for (pokemon of (pokemons | filterPokemonPipe:'name':filterQuery); track $index) {
         <option value={{pokemon.id}}>{{pokemon.name}}</option>
     }
 </select>
+
+<p>Selected Pokemon ID: {{selectedPokemonId}}</p>
+<p>Filter used: "{{filterQuery}}"</p>
