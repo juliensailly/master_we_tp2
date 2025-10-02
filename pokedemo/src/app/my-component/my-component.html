@@ -1,15 +1,34 @@
-<input [(ngModel)]="filterQuery" placeholder="Rechercher un Pokemon...">
+<mat-card>
+    <mat-card-header>
+        <mat-card-title>Pokédex</mat-card-title>
+    </mat-card-header>
 
-<select name="pokemon-select" id="pokemon-select" [(ngModel)]="selectedPokemonId" (change)="onPokemonSelection()">
-    <option value="-1">-- Choisissez un Pokemon --</option>
-    @for (pokemon of (pokemons | filterPokemonPipe:'name':filterQuery); track $index) {
-    <option [value]="pokemon.id">{{pokemon.name}}</option>
-    }
-</select>
+    <mat-card-content>
+        <mat-form-field appearance="outline" style="width: 100%; margin-bottom: 20px;">
+            <mat-label>Rechercher un Pokemon</mat-label>
+            <input matInput [(ngModel)]="filterQuery" placeholder="Tapez le nom d'un Pokemon...">
+        </mat-form-field>
 
-<p>Selected Pokemon ID: {{selectedPokemonId}}</p>
-<p>Filter used: "{{filterQuery}}"</p>
+        <mat-form-field appearance="outline" style="width: 100%; margin-bottom: 20px;">
+            <mat-label>Choisir un Pokemon</mat-label>
+            <mat-select [(ngModel)]="selectedPokemonId" (selectionChange)="onPokemonSelection()">
+                <mat-option value="-1">-- Choisissez un Pokemon --</mat-option>
+                @for (pokemon of (pokemons | filterPokemonPipe:'name':filterQuery); track $index) {
+                <mat-option [value]="pokemon.id">{{pokemon.name}}</mat-option>
+                }
+            </mat-select>
+        </mat-form-field>
 
-<button (click)="displaySelectedPokemon()" [disabled]="selectedPokemonId === '-1'">Go!</button>
+        <p><strong>Selected Pokemon ID:</strong> {{selectedPokemonId}}</p>
+        <p><strong>Filter used:</strong> "{{filterQuery}}"</p>
+
+        <mat-card-actions>
+            <button mat-raised-button color="primary" (click)="displaySelectedPokemon()"
+                [disabled]="selectedPokemonId === '-1'">
+                Go!
+            </button>
+        </mat-card-actions>
+    </mat-card-content>
+</mat-card>
 
 <app-pokemon-details></app-pokemon-details>
