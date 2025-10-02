@@ -1,55 +1,55 @@
 <div class="pokemon-details-container">
-  <mat-card *ngIf="isLoading" class="loading-card">
-      <mat-card-content>
-          <p>Chargement des informations du pokémon...</p>
-      </mat-card-content>
-  </mat-card>
+    <mat-card *ngIf="isLoading" class="loading-card">
+        <mat-card-content>
+            <p>Chargement des informations du pokémon...</p>
+        </mat-card-content>
+    </mat-card>
 
-  <mat-card *ngIf="errorMessage" class="error-card">
-      <mat-card-content>
-          <p style="color: #f44336;">{{ errorMessage }}</p>
-      </mat-card-content>
-  </mat-card>
+    <mat-card *ngIf="errorMessage" class="error-card">
+        <mat-card-content>
+            <p style="color: #f44336;">{{ errorMessage }}</p>
+        </mat-card-content>
+    </mat-card>
 
-  <mat-card *ngIf="!isLoading && !errorMessage && pokemon.id !== '-1'">
-      <mat-card-header>
-          <mat-card-title>{{ pokemon.name | titlecase }}</mat-card-title>
-          <mat-card-subtitle>Pokémon #{{ pokemon.id }}</mat-card-subtitle>
-      </mat-card-header>
+    <mat-card *ngIf="!isLoading && !errorMessage && pokemon.id !== '-1'">
+        <mat-card-header>
+            <mat-card-title>{{ pokemon.name | titlecase }}</mat-card-title>
+            <mat-card-subtitle>Pokémon #{{ pokemon.id }}</mat-card-subtitle>
+        </mat-card-header>
 
-      <mat-card-content>
-          <div class="pokemon-image">
-              <img [src]="pokemon.imgUrl" [alt]="pokemon.name" *ngIf="pokemon.imgUrl" />
-          </div>
+        <mat-card-content>
+            <div class="pokemon-image">
+                <img [src]="pokemon.imgUrl" [alt]="pokemon.name" *ngIf="pokemon.imgUrl" />
+            </div>
 
-          <div class="info-section">
-              <h4>Informations de base</h4>
-              <p><strong>ID:</strong> #{{ pokemon.id }}</p>
-              <p><strong>Nom:</strong> {{ pokemon.name | titlecase }}</p>
-              <p *ngIf="pokemon.height"><strong>Taille:</strong> {{ pokemon.height / 10 }} m</p>
-              <p *ngIf="pokemon.weight"><strong>Poids:</strong> {{ pokemon.weight / 10 }} kg</p>
+            <div class="info-section">
+                <h4>Informations de base</h4>
+                <p><strong>ID:</strong> #{{ pokemon.id }}</p>
+                <p><strong>Nom:</strong> {{ pokemon.name | titlecase }}</p>
+                <p *ngIf="pokemon.height"><strong>Taille:</strong> {{ pokemon.height / 10 }} m</p>
+                <p *ngIf="pokemon.weight"><strong>Poids:</strong> {{ pokemon.weight / 10 }} kg</p>
 
-              <div *ngIf="pokemon.types && pokemon.types.length > 0">
-                  <strong>Types:</strong>
-                  <span *ngFor="let type of pokemon.types" class="type-badge">
-                      {{ type | titlecase }}
-                  </span>
-              </div>
-          </div>
+                <div *ngIf="pokemon.types && pokemon.types.length > 0">
+                    <strong>Types:</strong>
+                    <span *ngFor="let type of pokemon.types" class="type-badge">
+                        {{ type | titlecase }}
+                    </span>
+                </div>
+            </div>
 
-          <div *ngIf="pokemon.stats && pokemon.stats.length > 0" class="info-section">
-              <h4>Statistiques</h4>
-              <div *ngFor="let stat of pokemon.stats" class="stat-item">
-                  <span><strong>{{ stat.name }}:</strong></span>
-                  <span class="stat-value">{{ stat.value }}</span>
-              </div>
-          </div>
-      </mat-card-content>
-  </mat-card>
+            <div *ngIf="pokemon.stats && pokemon.stats.length > 0" class="info-section">
+                <h4>Statistiques</h4>
+                <div *ngFor="let stat of pokemon.stats" class="stat-item">
+                    <span><strong>{{ stat.name }}:</strong></span>
+                    <span class="stat-value">{{ stat.value }}</span>
+                </div>
+            </div>
+        </mat-card-content>
+    </mat-card>
 
-  <mat-card *ngIf="!isLoading && !errorMessage && currentPokemonId === '-1'" class="no-selection-card">
-      <mat-card-content>
-          <p>Sélectionnez un pokémon pour voir ses informations détaillées.</p>
-      </mat-card-content>
-  </mat-card>
+    <mat-card *ngIf="!isLoading && !errorMessage && currentPokemonId === '-1'" class="no-selection-card">
+        <mat-card-content>
+            <p>Sélectionnez un pokémon pour voir ses informations détaillées.</p>
+        </mat-card-content>
+    </mat-card>
 </div>
