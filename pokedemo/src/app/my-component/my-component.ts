@@ -11,7 +11,7 @@ export class MyComponent {
   filterQuery: string = '';
   selectedPokemonId: string = '-1'
 
-  // Liste fictive de Pokemons
+  // Liste de Pokemons
   pokemons = [
     new Pokemon('1', 'Bulbasaur'),
     new Pokemon('2', 'Charmander'),
@@ -23,9 +23,13 @@ export class MyComponent {
   displaySelectedPokemon() {
     const selected = this.pokemons.find(p => p.id === this.selectedPokemonId)
     if (selected) {
-      console.log(selected.name)
+      console.log('Pokemon sélectionné:', selected.name)
     } else {
-      console.log('No Pokemon selected')
+      console.log('Aucun Pokemon sélectionné')
     }
+  }
+
+  onPokemonSelection() {
+    console.log('Pokemon sélectionné - ID:', this.selectedPokemonId);
   }
 }

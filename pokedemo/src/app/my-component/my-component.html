@@ -1,14 +1,41 @@
-<input [(ngModel)]="filterQuery" placeholder="Rechercher un Pokemon...">
+<div class="search-container">
+  <h2>Pokédex</h2>
+  
+  <div class="search-section">
+    <label for="search-input">Rechercher un Pokemon:</label>
+    <input 
+      id="search-input"
+      [(ngModel)]="filterQuery" 
+      placeholder="Tapez le nom d'un Pokemon..."
+      class="search-input">
+  </div>
 
-<select name="pokemon-select" id="pokemon-select" [(ngModel)]="selectedPokemonId">
-    <option value="-1">-- Choose a Pokemon --</option>
-    @for (pokemon of (pokemons | filterPokemonPipe:'name':filterQuery); track $index) {
-        <option value={{pokemon.id}}>{{pokemon.name}}</option>
-    }
-</select>
+  <div class="select-section">
+    <label for="pokemon-select">Choisir un Pokemon:</label>
+    <select 
+      name="pokemon-select" 
+      id="pokemon-select" 
+      [(ngModel)]="selectedPokemonId"
+      class="pokemon-select"
+      (change)="onPokemonSelection()">
+      <option value="-1">-- Choisissez un Pokemon --</option>
+      @for (pokemon of (pokemons | filterPokemonPipe:'name':filterQuery); track $index) {
+        <option [value]="pokemon.id">{{pokemon.name | titlecase}}</option>
+      }
+    </select>
+  </div>
 
-<p>Selected Pokemon ID: {{selectedPokemonId}}</p>
-<p>Filter used: "{{filterQuery}}"</p>
+  <div class="debug-info">
+    <p><strong>Pokemon sélectionné:</strong> {{selectedPokemonId}}</p>
+    <p><strong>Filtre appliqué:</strong> "{{filterQuery}}"</p>
+  </div>
 
-<button (click)="displaySelectedPokemon()">Go!</button>
-<mat-slide-toggle>Toggle me!</mat-slide-toggle>
+  <button 
+    (click)="displaySelectedPokemon()" 
+    [disabled]="selectedPokemonId === '-1'"
+    class="action-button">
+    Afficher les détails
+  </button>
+</div>
+
+<app-pokemon-details [pokemonId]="selectedPokemonId"></app-pokemon-details>
