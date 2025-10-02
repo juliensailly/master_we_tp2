@@ -14,7 +14,7 @@ export class PokemonDetails implements OnInit, OnChanges {
   isLoading: boolean = false;
   errorMessage: string = '';
 
-  constructor(private pokeApiService: PokeAPI) {}
+  constructor(private pokeApiService: PokeAPI) { }
 
   ngOnInit() {
     if (this.pokemonId && this.pokemonId !== '-1') {
@@ -31,7 +31,7 @@ export class PokemonDetails implements OnInit, OnChanges {
   loadPokemonDetails() {
     this.isLoading = true;
     this.errorMessage = '';
-    
+
     this.pokeApiService.getPokemon(this.pokemonId).subscribe({
       next: (response: any) => {
         this.pokemon = this.mapApiResponseToPokemon(response);
