@@ -1,4 +1,78 @@
-img {
-    max-width: 150px;
-    height: auto;
+.pokemon-details-container {
+  max-width: 600px;
+  margin: 20px auto;
+}
+
+.pokemon-image {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.pokemon-image img {
+  max-width: 150px;
+  height: auto;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.info-section {
+  margin-bottom: 20px;
+}
+
+.info-section h4 {
+  color: #2196f3;
+  border-bottom: 2px solid #2196f3;
+  padding-bottom: 5px;
+  margin-bottom: 15px;
+}
+
+.stat-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+  padding: 8px;
+  background-color: #f8f9fa;
+  border-radius: 4px;
+}
+
+.stat-value {
+  color: #2196f3;
+  font-weight: bold;
+  background-color: white;
+  padding: 4px 8px;
+  border-radius: 4px;
+}
+
+.type-badge {
+  background-color: #2196f3;
+  color: white;
+  padding: 4px 8px;
+  border-radius: 12px;
+  margin-left: 5px;
+  font-size: 12px;
+  font-weight: 500;
+}
+
+mat-card {
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  margin-bottom: 20px;
+}
+
+mat-card-title {
+  color: #2196f3;
+}
+
+.error-card {
+  border-left: 4px solid #f44336;
+}
+
+.loading-card {
+  text-align: center;
+  color: #666;
+}
+
+.no-selection-card {
+  text-align: center;
+  color: #666;
 }

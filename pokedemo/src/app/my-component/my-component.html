@@ -1,34 +1,40 @@
-<mat-card>
-    <mat-card-header>
-        <mat-card-title>Pokédex</mat-card-title>
-    </mat-card-header>
+<div class="search-container">
+  <mat-card>
+      <mat-card-header>
+          <mat-card-title>Pokédex</mat-card-title>
+      </mat-card-header>
 
-    <mat-card-content>
-        <mat-form-field appearance="outline" style="width: 100%; margin-bottom: 20px;">
-            <mat-label>Rechercher un Pokemon</mat-label>
-            <input matInput [(ngModel)]="filterQuery" placeholder="Tapez le nom d'un Pokemon...">
-        </mat-form-field>
+      <mat-card-content>
+          <mat-form-field appearance="outline" style="width: 100%; margin-bottom: 20px;">
+              <mat-label>Rechercher un Pokemon</mat-label>
+              <input matInput [(ngModel)]="filterQuery" placeholder="Tapez le nom d'un Pokemon...">
+          </mat-form-field>
 
-        <mat-form-field appearance="outline" style="width: 100%; margin-bottom: 20px;">
-            <mat-label>Choisir un Pokemon</mat-label>
-            <mat-select [(ngModel)]="selectedPokemonId" (selectionChange)="onPokemonSelection()">
-                <mat-option value="-1">-- Choisissez un Pokemon --</mat-option>
-                @for (pokemon of (pokemons | filterPokemonPipe:'name':filterQuery); track $index) {
-                <mat-option [value]="pokemon.id">{{pokemon.name}}</mat-option>
-                }
-            </mat-select>
-        </mat-form-field>
+          <div class="pokemon-select-section">
+            <mat-form-field appearance="outline" style="width: 100%;">
+                <mat-label>Choisir un Pokemon</mat-label>
+                <mat-select [(ngModel)]="selectedPokemonId" (selectionChange)="onPokemonSelection()">
+                    <mat-option value="-1">-- Choisissez un Pokemon --</mat-option>
+                    @for (pokemon of (pokemons | filterPokemonPipe:'name':filterQuery); track $index) {
+                    <mat-option [value]="pokemon.id">{{pokemon.name}}</mat-option>
+                    }
+                </mat-select>
+            </mat-form-field>
+          </div>
 
-        <p><strong>Selected Pokemon ID:</strong> {{selectedPokemonId}}</p>
-        <p><strong>Filter used:</strong> "{{filterQuery}}"</p>
+          <div class="debug-info">
+            <p><strong>Selected Pokemon ID:</strong> {{selectedPokemonId}}</p>
+            <p><strong>Filter used:</strong> "{{filterQuery}}"</p>
+          </div>
 
-        <mat-card-actions>
-            <button mat-raised-button color="primary" (click)="displaySelectedPokemon()"
-                [disabled]="selectedPokemonId === '-1'">
-                Go!
-            </button>
-        </mat-card-actions>
-    </mat-card-content>
-</mat-card>
+          <mat-card-actions>
+              <button mat-raised-button color="primary" (click)="displaySelectedPokemon()"
+                  [disabled]="selectedPokemonId === '-1'">
+                  Go!
+              </button>
+          </mat-card-actions>
+      </mat-card-content>
+  </mat-card>
+</div>
 
 <app-pokemon-details></app-pokemon-details>

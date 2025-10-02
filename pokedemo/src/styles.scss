@@ -8,4 +8,19 @@ body {
 body {
     margin: 0;
     font-family: Roboto, "Helvetica Neue", sans-serif;
+    background-color: #f5f5f5;
+}
+
+.app-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.highlight {
+    color: #2196f3;
+}
+
+.section-spacing {
+    margin-bottom: 20px;
 }
