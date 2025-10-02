@@ -1,6 +1,8 @@
-import { Component, Input, OnInit, OnChanges, SimpleChanges } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Pokemon, PokemonStat } from '../pokemon';
 import { PokeAPI } from '../poke-api';
+import { PokemonCommunication } from '../pokemon-communication';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-pokemon-details',
@@ -8,31 +10,44 @@ import { PokeAPI } from '../poke-api';
   templateUrl: './pokemon-details.html',
   styleUrl: './pokemon-details.css'
 })
-export class PokemonDetails implements OnInit, OnChanges {
-  @Input() pokemonId: string = '';
+export class PokemonDetails implements OnInit, OnDestroy {
   pokemon: Pokemon = new Pokemon();
   isLoading: boolean = false;
   errorMessage: string = '';
+  currentPokemonId: string = '-1';
+  private subscription: Subscription = new Subscription();
 
-  constructor(private pokeApiService: PokeAPI) { }
+  constructor(
+    private pokeApiService: PokeAPI,
+    private pokemonCommunicationService: PokemonCommunication
+  ) { }
 
   ngOnInit() {
-    if (this.pokemonId && this.pokemonId !== '-1') {
-      this.loadPokemonDetails();
-    }
+    this.subscription.add(
+      this.pokemonCommunicationService.selectedPokemonId$.subscribe(
+        (pokemonId: string) => {
+          this.currentPokemonId = pokemonId;
+          if (pokemonId && pokemonId !== '-1') {
+            this.loadPokemonDetails(pokemonId);
+          } else {
+            this.pokemon = new Pokemon();
+            this.errorMessage = '';
+            this.isLoading = false;
+          }
+        }
+      )
+    );
   }
 
-  ngOnChanges(changes: SimpleChanges) {
-    if (changes['pokemonId'] && this.pokemonId && this.pokemonId !== '-1') {
-      this.loadPokemonDetails();
-    }
+  ngOnDestroy() {
+    this.subscription.unsubscribe();
   }
 
-  loadPokemonDetails() {
+  loadPokemonDetails(pokemonId: string) {
     this.isLoading = true;
     this.errorMessage = '';
 
-    this.pokeApiService.getPokemon(this.pokemonId).subscribe({
+    this.pokeApiService.getPokemon(pokemonId).subscribe({
       next: (response: any) => {
         this.pokemon = this.mapApiResponseToPokemon(response);
         this.isLoading = false;

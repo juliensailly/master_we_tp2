@@ -9,6 +9,7 @@ import { FormsModule } from '@angular/forms';
 import { FilterPokemonPipePipe } from './filter-pokemon--pipe-pipe';
 import { PokeAPI } from './poke-api';
 import { PokemonDetails } from './pokemon-details/pokemon-details';
+import { PokemonCommunication } from './pokemon-communication';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { PokemonDetails } from './pokemon-details/pokemon-details';
   ],
   providers: [
     provideBrowserGlobalErrorListeners(),
-    PokeAPI
+    PokeAPI,
+    PokemonCommunication
   ],
   bootstrap: [App]
 })
