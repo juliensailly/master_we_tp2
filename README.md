@@ -34,7 +34,7 @@ cd master_we_tp2
 
 ```bash
 cd pokedemo
-npm install
+npm install --legacy-peer-deps # Permet d'éviter un comportement apporté par npm v7.
 ```
 
 ### 3. Lancement de l'application
