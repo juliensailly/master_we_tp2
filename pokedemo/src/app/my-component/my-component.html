@@ -13,13 +13,32 @@
             <div class="pokemon-select-section">
                 <mat-form-field appearance="outline" style="width: 100%;">
                     <mat-label>Choisir un Pokemon</mat-label>
-                    <mat-select [(ngModel)]="selectedPokemonId" (selectionChange)="onPokemonSelection()">
-                        <mat-option value="-1">-- Choisissez un Pokemon --</mat-option>
-                        @for (pokemon of (pokemons | filterPokemonPipe:'name':filterQuery); track $index) {
-                        <mat-option [value]="pokemon.id">{{pokemon.name}}</mat-option>
+                    <mat-select [(ngModel)]="selectedPokemonId" 
+                               (selectionChange)="onPokemonSelection()"
+                               [disabled]="isLoadingPokemons">
+                        <mat-option value="-1">
+                            @if (isLoadingPokemons) {
+                                -- Chargement des Pokémons... --
+                            } @else {
+                                -- Choisissez un Pokemon --
+                            }
+                        </mat-option>
+                        @if (!isLoadingPokemons && !errorLoadingPokemons) {
+                            @for (pokemon of (pokemons | filterPokemonPipe:'name':filterQuery); track pokemon.id) {
+                                <mat-option [value]="pokemon.id">{{pokemon.name}}</mat-option>
+                            }
                         }
                     </mat-select>
                 </mat-form-field>
+                
+                @if (errorLoadingPokemons) {
+                    <div class="error-message" style="color: red; margin-top: 10px;">
+                        {{ errorLoadingPokemons }}
+                        <button mat-button color="warn" (click)="loadPokemonsList()" style="margin-left: 10px;">
+                            Réessayer
+                        </button>
+                    </div>
+                }
             </div>
 
             <div class="debug-info">
